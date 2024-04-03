@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.flow
 
 class PlayRepository(
     private val context: Context,
+    private val playHttpClient: PlayHttpClient,
     private val gson: Gson,
     private val prefs: Prefs
 ) {
@@ -36,7 +37,7 @@ class PlayRepository(
     private fun refreshAuth(): AuthData {
         Log.i("PlayRepository", "Refreshing token.")
         val properties = NativeDeviceInfoProvider(context).getNativeDeviceProperties()
-        val playResponse = PlayHttpClient.postAuth(AUTH_URL, gson.toJson(properties).toByteArray())
+        val playResponse = playHttpClient.postAuth(AUTH_URL, gson.toJson(properties).toByteArray())
         if (playResponse.isSuccessful) {
             val authData = gson.fromJson(String(playResponse.responseBytes), AuthData::class.java)
             prefs.playAuthData.put(authData)
@@ -56,9 +57,13 @@ class PlayRepository(
             Log.i("PlayRepository", "Checking token validity.")
 
             // 1h has passed check if token still works
-            val app = AppDetailsHelper(savedData)
-                .using(PlayHttpClient)
-                .getAppByPackageName("com.google.android.gm")
+            val app = runCatching {
+                AppDetailsHelper(savedData)
+                    .using(playHttpClient)
+                    .getAppByPackageName("com.google.android.gm")
+            }.getOrElse {
+                return refreshAuth()
+            }
 
             if (app.packageName.isEmpty()) {
                 return refreshAuth()
@@ -73,7 +78,7 @@ class PlayRepository(
             // Normal Search
             val authData = auth()
             val updates = SearchHelper(authData)
-                .using(PlayHttpClient)
+                .using(playHttpClient)
                 .searchResults(text)
                 .appList
                 .take(10)
@@ -83,7 +88,7 @@ class PlayRepository(
             // Package Name Search
             val authData = auth()
             val update = AppDetailsHelper(authData)
-                .using(PlayHttpClient)
+                .using(playHttpClient)
                 .getAppByPackageName(text)
                 .toAppUpdate(::getInstallFiles)
             emit(Result.success(listOf(update)))
@@ -96,7 +101,7 @@ class PlayRepository(
     suspend fun updates(apps: List<AppInstalled>) = flow {
         val authData = auth()
         val details = AppDetailsHelper(authData)
-            .using(PlayHttpClient)
+            .using(playHttpClient)
             .getAppByPackageName(apps.getPackageNames())
         val updates = details
             .filter { it.versionCode > apps.getVersionCode(it.packageName) }
@@ -114,7 +119,7 @@ class PlayRepository(
     }
 
     private fun getInstallFiles(app: App) = PurchaseHelper(auth())
-        .using(PlayHttpClient)
+        .using(playHttpClient)
         .purchase(app.packageName, app.versionCode, app.offerType)
         .filter { it.type == File.FileType.BASE || it.type == File.FileType.SPLIT }
 

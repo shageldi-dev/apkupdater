@@ -44,13 +44,12 @@ abstract class InstallViewModel(
         }
     }
 
-    protected fun subscribeToInstallStatus(
-        block: (AppInstallStatus) -> Unit
-    ) = installLog.status().onEach {
-        block(it)
+    protected fun subscribeToInstallStatus(updates: List<AppUpdate>) = installLog.status().onEach {
+        sendInstallSnack(updates, it)
         if (it.success) {
             finishInstall(it.id).join()
         } else {
+            installLog.emitProgress(AppInstallProgress(it.id, 0L))
             cancelInstall(it.id).join()
         }
     }.launchIn(viewModelScope)
@@ -99,7 +98,7 @@ abstract class InstallViewModel(
         cancelInstall(id)
     }
 
-    protected fun sendInstallSnack(updates: List<AppUpdate>, log: AppInstallStatus) {
+    private fun sendInstallSnack(updates: List<AppUpdate>, log: AppInstallStatus) {
         if (log.snack) {
             updates.find { log.id == it.id }?.let { app ->
                 val message = if (log.success) R.string.install_success else R.string.install_failure

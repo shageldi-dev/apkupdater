@@ -21,15 +21,17 @@ import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
 
-object PlayHttpClient : IProxyHttpClient {
+class PlayHttpClient : IProxyHttpClient {
 
-    private const val POST = "POST"
-    private const val GET = "GET"
+    companion object {
+        private const val POST = "POST"
+        private const val GET = "GET"
+    }
 
     private val _responseCode = MutableStateFlow(100)
     override val responseCode: StateFlow<Int> get() = _responseCode.asStateFlow()
     private var okHttpClient = OkHttpClient()
-    val okHttpClientBuilder = OkHttpClient().newBuilder()
+    private val okHttpClientBuilder = OkHttpClient().newBuilder()
         .connectTimeout(25, TimeUnit.SECONDS)
         .readTimeout(25, TimeUnit.SECONDS)
         .writeTimeout(25, TimeUnit.SECONDS)

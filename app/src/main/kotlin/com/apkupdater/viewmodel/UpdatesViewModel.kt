@@ -37,9 +37,7 @@ class UpdatesViewModel(
 	private val state = MutableStateFlow<UpdatesUiState>(UpdatesUiState.Loading)
 
 	init {
-		subscribeToInstallStatus { status ->
-			sendInstallSnack(state.value.updates(), status)
-		}
+		subscribeToInstallStatus(state.value.updates())
 		subscribeToInstallProgress { progress ->
 			state.value = UpdatesUiState.Success(state.value.mutableUpdates().setProgress(progress))
 		}

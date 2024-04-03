@@ -33,6 +33,7 @@ import com.apkupdater.util.Themer
 import com.apkupdater.util.UpdatesNotification
 import com.apkupdater.util.addUserAgentInterceptor
 import com.apkupdater.util.isAndroidTv
+import com.apkupdater.util.play.PlayHttpClient
 import com.apkupdater.viewmodel.AppsViewModel
 import com.apkupdater.viewmodel.MainViewModel
 import com.apkupdater.viewmodel.SearchViewModel
@@ -151,7 +152,7 @@ val mainModule = module {
 
 	single { AptoideRepository(get(), get(), get()) }
 
-	single { PlayRepository(get(), get(), get()) }
+	single { PlayRepository(get(), get(), get(), get()) }
 
 	single(named("main")) { FdroidRepository(get(), "https://f-droid.org/repo/", FdroidSource, get()) }
 
@@ -180,6 +181,8 @@ val mainModule = module {
 	single { Stringer(androidContext()) }
 
 	single { InstallLog() }
+
+	single { PlayHttpClient() }
 
 	viewModel { MainViewModel(get(), get()) }
 

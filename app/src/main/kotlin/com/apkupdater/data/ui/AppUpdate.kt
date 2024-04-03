@@ -38,8 +38,8 @@ fun MutableList<AppUpdate>.removeId(id: Int): List<AppUpdate> {
 fun MutableList<AppUpdate>.setProgress(progress: AppInstallProgress): MutableList<AppUpdate> {
 	val index = this.indexOf(progress.id)
 	if (index != -1) {
-		if (progress.progress != 0L) this[index] = this[index].copy(progress = progress.progress)
-		if (progress.total != 0L) this[index] = this[index].copy(total = progress.total)
+		progress.progress?.let { this[index] = this[index].copy(progress = it) }
+		progress.total?.let { this[index] = this[index].copy(total = it) }
 	}
 	return this
 }
