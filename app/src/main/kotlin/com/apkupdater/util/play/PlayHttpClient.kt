@@ -5,6 +5,7 @@ import com.aurora.gplayapi.data.models.PlayResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import okhttp3.Cache
 import okhttp3.Credentials
 import okhttp3.Headers.Companion.toHeaders
 import okhttp3.HttpUrl
@@ -21,7 +22,9 @@ import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
 
-class PlayHttpClient : IProxyHttpClient {
+class PlayHttpClient(
+    cache: Cache
+) : IProxyHttpClient {
 
     companion object {
         private const val POST = "POST"
@@ -30,7 +33,6 @@ class PlayHttpClient : IProxyHttpClient {
 
     private val _responseCode = MutableStateFlow(100)
     override val responseCode: StateFlow<Int> get() = _responseCode.asStateFlow()
-    private var okHttpClient = OkHttpClient()
     private val okHttpClientBuilder = OkHttpClient().newBuilder()
         .connectTimeout(25, TimeUnit.SECONDS)
         .readTimeout(25, TimeUnit.SECONDS)
@@ -38,6 +40,8 @@ class PlayHttpClient : IProxyHttpClient {
         .retryOnConnectionFailure(true)
         .followRedirects(true)
         .followSslRedirects(true)
+        .cache(cache)
+    private var okHttpClient = okHttpClientBuilder.build()
 
     override fun setProxy(proxyInfo: ProxyInfo): PlayHttpClient {
         val proxy = Proxy(
@@ -62,8 +66,7 @@ class PlayHttpClient : IProxyHttpClient {
             }
         }
 
-        okHttpClientBuilder.proxy(proxy)
-        okHttpClient = okHttpClientBuilder.build()
+        okHttpClient = okHttpClientBuilder.proxy(proxy).build()
         return this
     }
 

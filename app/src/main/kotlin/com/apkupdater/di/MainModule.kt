@@ -182,7 +182,7 @@ val mainModule = module {
 
 	single { InstallLog() }
 
-	single { PlayHttpClient() }
+	single { PlayHttpClient(get()) }
 
 	viewModel { MainViewModel(get(), get()) }
 
