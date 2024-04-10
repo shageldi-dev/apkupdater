@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+									  
 <resources>
 
-    <string name="app_name" translatable="false">APKUpdater</string>
     <string name="tab_apps">Apps</string>
     <string name="tab_search">Suche</string>
     <string name="tab_updates">Updates</string>
@@ -21,10 +20,12 @@
     <string name="app_cd">App-Icon</string>
     <string name="install_success">%1$s installiert.</string>
     <string name="install_failure">%1$s wurde nicht installiert.</string>
+    <string name="root_install_not_supported">Root-Installation dieser App wird nicht unterstützt.</string>
 
     // Settings
     <string name="settings_portrait_columns">Anzahl der Spalten</string>
     <string name="settings_landscape_columns">Anzahl der Zeilen</string>
+    <string name="play_text_animations">Textanimation verwenden</string>
     <string name="settings_sources">Quellen</string>
     <string name="settings_ui">Benutzeroberfläche</string>
     <string name="settings_alarm">Alarm</string>
@@ -34,19 +35,11 @@
     <string name="settings_alarm_daily">Täglich</string>
     <string name="settings_alarm_3day">3-Tägig</string>
     <string name="settings_alarm_weekly">Wöchentlich</string>
-    <string name="settings_android_tv_ui" translatable="false">Android TV</string>
     <string name="ignore_alpha">Alphas ignorieren</string>
     <string name="ignore_beta">Betas ignorieren</string>
     <string name="ignore_preRelease">Pre-Releases ignorieren</string>
     <string name="use_safe_stores">Sichere Stores nutzen (Aptoide)</string>
     <string name="root_install">Root-Installation</string>
-    <string name="source_apkmirror" translatable="false">ApkMirror</string>
-    <string name="source_fdroid" translatable="false">F-Droid Offiziell</string>
-    <string name="source_izzy" translatable="false">F-Droid Izzy</string>
-    <string name="source_aptoide" translatable="false">Aptoide</string>
-    <string name="source_github" translatable="false">GitHub</string>
-    <string name="source_gitlab" translatable="false">GitLab</string>
-    <string name="source_apkpure" translatable="false">APKPure</string>
     <string name="about">Über</string>
     <string name="frequency">Häufigkeit</string>
     <string name="theme">Thema</string>
@@ -54,14 +47,14 @@
     <string name="theme_dark">Dunkel</string>
     <string name="theme_light">Hell</string>
     <string name="about_github">Hol dir den Quellcode, melde Fehler und schlage Funktionen / Übersetzungen vor.</string>
-    <string name="about_donate">Wenn dir die App gefällt solltest du eine Spende in Betracht ziehen.</string>
+    <string name="about_donate">Wenn dir die App gefällt solltest du hier eine Spende in Betracht ziehen.</string>
     <string name="copy_to_clipboard">Kopiere in Zwischenablage</string>
     <string name="copy_app_list">App-Liste kopieren</string>
+    <string name="copy_app_logs">App-Logs kopieren</string>
 
     // Notifications
     <string name="notification_channel_name">Updates</string>
     <string name="notification_channel_description">Kanal für Update-Benachrichtigungen.</string>
-    <string name="notification_channel_id" translatable="false">updateChannel</string>
     <string name="notification_update_title">Updates</string>
     <plurals name="notification_update_description">
         <item quantity="zero">Keine Updates gefunden.</item>
