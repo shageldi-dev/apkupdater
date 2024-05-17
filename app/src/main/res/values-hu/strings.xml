@@ -25,7 +25,7 @@
     // Settings
     <string name="settings_portrait_columns">Álló mód oszlopok</string>
     <string name="settings_landscape_columns">Fekvő mód oszlopok</string>
-    <string name="play_text_animations">Szöveganimációk lejátszása</string>
+    <string name="play_text_animations">Szöveg animációk lejátszása</string>
     <string name="settings_sources">Források</string>
     <string name="settings_ui">Felület</string>
     <string name="settings_alarm">Riasztás</string>
@@ -39,7 +39,7 @@
     <string name="ignore_alpha">Alpha kizárása</string>
     <string name="ignore_beta">Beta kizárása</string>
     <string name="ignore_preRelease">Pre-release kizárása</string>
-    <string name="use_safe_stores">Használjon biztonságos üzleteket (Aptoide)</string>
+    <string name="use_safe_stores">Használjon biztonságos áruházakat (Aptoide)</string>
     <string name="root_install">Root telepítés</string>
     <string name="source_apkmirror" translatable="false">ApkMirror</string>
     <string name="source_fdroid" translatable="false">F-Droid Main</string>
