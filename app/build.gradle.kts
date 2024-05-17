@@ -96,7 +96,7 @@ dependencies {
     implementation("com.github.rumboalla.KryptoPrefs:kryptoprefs-gson:0.4.3")
     implementation("com.github.rumboalla.KryptoPrefs:kryptoprefs:0.4.3")
     implementation("com.github.topjohnwu.libsu:core:5.2.1")
-    implementation("com.gitlab.AuroraOSS:gplayapi:3.2.10")
+    implementation("com.aurora:gplayapi:3.2.11")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
