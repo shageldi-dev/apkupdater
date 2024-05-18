@@ -180,6 +180,7 @@ val GitHubApps = listOf(
     GitHubApp("im.molly.app", "mollyim", "mollyim-android"),
     GitHubApp("com.limelight", "moonlight-stream", "moonlight-android"),
     GitHubApp("is.xyz.mpv", "mpv-android", "mpv-android"),
+    GitHubApp("com.sanmer.mrepo", "MRepoApp", "MRepo"),
     GitHubApp("rocks.mucke.github", "moritz-weber", "mucke"),
     GitHubApp("com.github.anrimian.musicplayer", "Anrimian", "music-player"),
     GitHubApp("org.fossify.musicplayer", "FossifyOrg", "Music-Player"),
