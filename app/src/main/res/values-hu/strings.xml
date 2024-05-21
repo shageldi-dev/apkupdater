@@ -6,9 +6,9 @@
     <string name="tab_updates">Frissítések</string>
     <string name="tab_settings">Beállítások</string>
     <string name="something_went_wrong">"Valami félrement\n\uD83E\uDD26"</string>
-    <string name="ignore_version">Verzió kihagyása</string>
-    <string name="ignore_cd">App kihagyása</string>
-    <string name="unignore_cd">App figyelése</string>
+    <string name="ignore_version">Verziót mellőz</string>
+    <string name="ignore_cd">Nem frissít</string>
+    <string name="unignore_cd">App figyelés</string>
     <string name="refresh_updates">Keressen frissítéseket</string>
     <string name="exclude_system_apps">Rendszerappok kizárása</string>
     <string name="include_system_apps">Rendszerappokkal együtt</string>
@@ -16,7 +16,7 @@
     <string name="include_app_store">Tartalmazza az App Áruházat</string>
     <string name="exclude_disabled_apps">Letiltott appok kizárása</string>
     <string name="include_disabled_apps">Letiltott appokkal együtt</string>
-    <string name="install_cd">App telepítés</string>
+    <string name="install_cd">Telepítés</string>
     <string name="app_cd">App ikon</string>
     <string name="install_success">%1$s telepítve.</string>
     <string name="install_failure">%1$s nem sikerült telepíteni.</string>
